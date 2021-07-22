@@ -1,0 +1,15 @@
+/Users/YiniY/Projects/try-stuff/fun/fibonacci/fibonacci/obj/Debug/net5.0/fibonacci.csproj.AssemblyReference.cache
+/Users/YiniY/Projects/try-stuff/fun/fibonacci/fibonacci/obj/Debug/net5.0/fibonacci.GeneratedMSBuildEditorConfig.editorconfig
+/Users/YiniY/Projects/try-stuff/fun/fibonacci/fibonacci/obj/Debug/net5.0/fibonacci.AssemblyInfoInputs.cache
+/Users/YiniY/Projects/try-stuff/fun/fibonacci/fibonacci/obj/Debug/net5.0/fibonacci.AssemblyInfo.cs
+/Users/YiniY/Projects/try-stuff/fun/fibonacci/fibonacci/obj/Debug/net5.0/fibonacci.csproj.CoreCompileInputs.cache
+/Users/YiniY/Projects/try-stuff/fun/fibonacci/fibonacci/bin/Debug/net5.0/fibonacci.deps.json
+/Users/YiniY/Projects/try-stuff/fun/fibonacci/fibonacci/bin/Debug/net5.0/fibonacci.runtimeconfig.json
+/Users/YiniY/Projects/try-stuff/fun/fibonacci/fibonacci/bin/Debug/net5.0/fibonacci.runtimeconfig.dev.json
+/Users/YiniY/Projects/try-stuff/fun/fibonacci/fibonacci/bin/Debug/net5.0/fibonacci.dll
+/Users/YiniY/Projects/try-stuff/fun/fibonacci/fibonacci/bin/Debug/net5.0/ref/fibonacci.dll
+/Users/YiniY/Projects/try-stuff/fun/fibonacci/fibonacci/bin/Debug/net5.0/fibonacci.pdb
+/Users/YiniY/Projects/try-stuff/fun/fibonacci/fibonacci/obj/Debug/net5.0/fibonacci.dll
+/Users/YiniY/Projects/try-stuff/fun/fibonacci/fibonacci/obj/Debug/net5.0/ref/fibonacci.dll
+/Users/YiniY/Projects/try-stuff/fun/fibonacci/fibonacci/obj/Debug/net5.0/fibonacci.pdb
+/Users/YiniY/Projects/try-stuff/fun/fibonacci/fibonacci/obj/Debug/net5.0/fibonacci.genruntimeconfig.cache
