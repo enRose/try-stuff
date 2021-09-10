@@ -15,14 +15,7 @@ namespace APIMonkey
 
         private async Task<bool> FireForget(string whatIsYourName = "Yini")
         {
-            var speed = 250;
-
-            if (whatIsYourName == "Monkey King")
-            {
-                speed = 50;
-            }
-
-            await Task.Delay(speed);
+            await Task.Delay(whatIsYourName == "Monkey King" ? 50 : 300);
 
             return true;
         }
