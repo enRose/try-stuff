@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace APIMonkeyCSharp7
+namespace NetFramework_NetStandard1x_20_NetCore2x_CSharp73
 {
     public class ExpressionBodiedProps
     {
@@ -33,20 +33,41 @@ namespace APIMonkeyCSharp7
 
     public class InlineVarDeclaration
     {
-        public void DoStuff()
+        public void Better()
         {
-            // inlined_variable_declaration = true
             if (int.TryParse("1", out int x))
             {
                 Console.WriteLine(x);
-            }
+            }   
+        }
 
-            // inlined_variable_declaration = false
+        public void NotSoGood()
+        {
             int y;
             if (int.TryParse("1", out y))
             {
                 Console.WriteLine(y);
             }
+        }
+    }
+
+    public class NullCoalescingOperator
+    {
+        public void Better(string name)
+        {
+            _ = name ?? throw new ArgumentNullException("Name cannot be null");
+
+            Console.WriteLine("Continue processing below");
+        }
+
+        public void NotSoGood(string name)
+        {
+            if (name == null)
+            {
+                throw new ArgumentNullException("Name cannot be null");
+            }
+
+            Console.WriteLine("Continue processing below");
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace APIMonkeyCSharp6
+namespace CSharp6
 {
     public class ExpressionBodiedMethods
     {
