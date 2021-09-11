@@ -2,10 +2,11 @@
 
 namespace NetCore3x_NetStandard21_CSharp8
 {
-    public class CSharp8
+    public class NullCoalescingOperatorWithTypeParameters
     {
-        public CSharp8()
+        private static void Display<T>(T a, T backup)
         {
+            Console.WriteLine(a ?? backup);
         }
     }
 }
