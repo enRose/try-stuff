@@ -1,0 +1,60 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/YiniY/Projects/try-stuff/user-sampling/user-sampling.csproj": {}
+  },
+  "projects": {
+    "/Users/YiniY/Projects/try-stuff/user-sampling/user-sampling.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/YiniY/Projects/try-stuff/user-sampling/user-sampling.csproj",
+        "projectName": "user-sampling",
+        "projectPath": "/Users/YiniY/Projects/try-stuff/user-sampling/user-sampling.csproj",
+        "packagesPath": "/Users/YiniY/.nuget/packages/",
+        "outputPath": "/Users/YiniY/Projects/try-stuff/user-sampling/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/YiniY/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.403/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
