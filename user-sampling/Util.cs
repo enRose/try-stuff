@@ -11,6 +11,15 @@ namespace user_sampling
 {
     public static class Util
     {
+        public static long GetSalt(int size = 100)
+        {
+            using var generator = RandomNumberGenerator.Create();
+            var salt = new byte[size];
+            generator.GetBytes(salt);
+            return Math.Abs(BitConverter.ToInt64(salt));
+        }
+
+
         public static async Task DrawAsync(
             this Dictionary<Guid, Tuple<string, string>> bucket,
             string fileName
@@ -84,5 +93,29 @@ namespace user_sampling
 
         public static List<Guid> GenGuids(int num = 1000) =>
             Enumerable.Range(1, num).Select(x => Guid.NewGuid()).ToList();
+
+        public static void AddOrUpdateAppSetting<T>(string key, T value)
+        {
+            try
+            {
+                var filePath = GetPathOf("appsettings.json");
+
+                string json = File.ReadAllText(filePath);
+
+                dynamic jsonObj = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
+
+                jsonObj[key] = value;
+
+                string output = Newtonsoft.Json.JsonConvert.SerializeObject(
+                    jsonObj, Newtonsoft.Json.Formatting.Indented);
+
+                File.WriteAllText(filePath, output);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(
+                $"{ex} Error writing app settings");
+            }
+        }
     }
 }

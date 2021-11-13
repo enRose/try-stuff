@@ -1,24 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace user_sampling
 {
     class Program
     {
+        public static IConfigurationRoot config;
+        public static string salt;
+
         static async Task Main(string[] args)
         {
+            BuildConfig();
+
+            salt = config["Salt"];
+
+            if (string.IsNullOrWhiteSpace(salt))
+            {
+                salt = Util.GetSalt().ToString();
+
+                Util.AddOrUpdateAppSetting("Salt", salt);
+            }
+
             var guids = await Util.ReadFromAsync<List<Guid>>("guids.json");
 
-            var bucket = Bucket(Mod_bigint, guids);
+            var bucket = Bucket(Mod_md5, guids);
 
-            var t1 = bucket.WriteAsJsonToAsync("bucket-bigint.json");
+            var t1 = bucket.WriteAsJsonToAsync("bucket-md5.json");
 
-            var t2 = bucket.DrawAsync("bar-bigint.txt");
+            var t2 = bucket.DrawAsync("bar-md5.txt");
 
             await Task.WhenAll(t1, t2);
+        }
+
+        static void BuildConfig()
+        {
+            // Build configuration
+            config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
+                .AddJsonFile("appsettings.json", false)
+                .Build();
         }
 
         static Dictionary<Guid, Tuple<string, string>> Bucket(
@@ -51,7 +76,7 @@ namespace user_sampling
 
         static (Guid, BigInteger, BigInteger) Mod_md5(Guid g)
         {
-            var hashedGuid = g.ToString().ToMD5(); 
+            var hashedGuid = g.ToString().ToMD5(salt); 
 
             BigInteger remainder = hashedGuid % 997;
 

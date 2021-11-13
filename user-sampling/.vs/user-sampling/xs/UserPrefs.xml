@@ -1,8 +1,9 @@
 ﻿<Properties StartupConfiguration="{8FBFADBD-DD45-4B16-9EB5-0B9A96690D4D}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Program.cs">
     <Files>
-      <File FileName="Program.cs" Line="10" Column="6" />
-      <File FileName="Util.cs" />
+      <File FileName="Program.cs" Line="25" Column="1" />
+      <File FileName="Util.cs" Line="9" Column="1" />
+      <File FileName="appsettings.json" Line="3" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

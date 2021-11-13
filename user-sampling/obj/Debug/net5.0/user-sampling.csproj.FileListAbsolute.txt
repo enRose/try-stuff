@@ -28,3 +28,17 @@
 /Users/YiniY/Projects/try-stuff/user-sampling/obj/Debug/net5.0/ref/user-sampling.dll
 /Users/YiniY/Projects/try-stuff/user-sampling/obj/Debug/net5.0/user-sampling.pdb
 /Users/YiniY/Projects/try-stuff/user-sampling/obj/Debug/net5.0/user-sampling.genruntimeconfig.cache
+/Users/YiniY/Projects/try-stuff/user-sampling/bin/Debug/net5.0/appsettings.json
+/Users/YiniY/Projects/try-stuff/user-sampling/bin/Debug/net5.0/Microsoft.Extensions.Configuration.dll
+/Users/YiniY/Projects/try-stuff/user-sampling/bin/Debug/net5.0/Microsoft.Extensions.Configuration.Abstractions.dll
+/Users/YiniY/Projects/try-stuff/user-sampling/bin/Debug/net5.0/Microsoft.Extensions.Configuration.FileExtensions.dll
+/Users/YiniY/Projects/try-stuff/user-sampling/bin/Debug/net5.0/Microsoft.Extensions.Configuration.Json.dll
+/Users/YiniY/Projects/try-stuff/user-sampling/bin/Debug/net5.0/Microsoft.Extensions.FileProviders.Abstractions.dll
+/Users/YiniY/Projects/try-stuff/user-sampling/bin/Debug/net5.0/Microsoft.Extensions.FileProviders.Physical.dll
+/Users/YiniY/Projects/try-stuff/user-sampling/bin/Debug/net5.0/Microsoft.Extensions.FileSystemGlobbing.dll
+/Users/YiniY/Projects/try-stuff/user-sampling/bin/Debug/net5.0/Microsoft.Extensions.Primitives.dll
+/Users/YiniY/Projects/try-stuff/user-sampling/bin/Debug/net5.0/Newtonsoft.Json.dll
+/Users/YiniY/Projects/try-stuff/user-sampling/bin/Debug/net5.0/System.Runtime.CompilerServices.Unsafe.dll
+/Users/YiniY/Projects/try-stuff/user-sampling/bin/Debug/net5.0/System.Text.Encodings.Web.dll
+/Users/YiniY/Projects/try-stuff/user-sampling/bin/Debug/net5.0/System.Text.Json.dll
+/Users/YiniY/Projects/try-stuff/user-sampling/obj/Debug/net5.0/user-sampling.csproj.CopyComplete
