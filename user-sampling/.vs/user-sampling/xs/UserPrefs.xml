@@ -1,16 +1,15 @@
 ﻿<Properties StartupConfiguration="{8FBFADBD-DD45-4B16-9EB5-0B9A96690D4D}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="bucket-md5.json">
     <Files>
-      <File FileName="Program.cs" Line="25" Column="1" />
-      <File FileName="Util.cs" Line="9" Column="1" />
-      <File FileName="appsettings.json" Line="3" Column="2" />
+      <File FileName="bar-md5.txt" Line="1" Column="1" />
+      <File FileName="bucket-md5.json" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="user-sampling" expanded="True">
             <Node name="user-sampling" expanded="True">
-              <Node name="Program.cs" selected="True" />
+              <Node name="bucket-md5.json" selected="True" />
             </Node>
           </Node>
         </State>

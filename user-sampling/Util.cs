@@ -19,34 +19,6 @@ namespace user_sampling
             return Math.Abs(BitConverter.ToInt64(salt));
         }
 
-
-        public static async Task DrawAsync(
-            this Dictionary<Guid, Tuple<string, string>> bucket,
-            string fileName
-            )
-        {
-            var bars = new Dictionary<string, int>();
-
-            bucket.Values.ToList().ForEach(x => {
-
-                if (!bars.TryAdd(x.Item2, 1))
-                {
-                    bars[x.Item2] = bars[x.Item2] + 1;
-                }
-
-            });
-
-            var lines = bars.OrderBy(b => Convert.ToInt32(b.Key))
-                .Select(bar => $"{bar.Key}: {bar.Value.ToDashBar()} {bar.Value}");
-            
-            await lines.WriteLinesTo(fileName);
-        }
-
-        public static string ToDashBar(this int v)
-            => Enumerable
-            .Range(0, v).Select(x => "-")
-            .Aggregate(((partialPhrase, word) => $"{partialPhrase} {word}"));
-
         public static long ToMD5(
             this string input,
             string salt = "donkiLovesCheeseC1ke")
@@ -117,5 +89,32 @@ namespace user_sampling
                 $"{ex} Error writing app settings");
             }
         }
+
+        public static async Task DrawAsync(
+            this Dictionary<Guid, Tuple<string, string>> bucket,
+            string fileName
+            )
+        {
+            var bars = new Dictionary<string, int>();
+
+            bucket.Values.ToList().ForEach(x => {
+
+                if (!bars.TryAdd(x.Item2, 1))
+                {
+                    bars[x.Item2] = bars[x.Item2] + 1;
+                }
+
+            });
+
+            var lines = bars.OrderBy(b => Convert.ToInt32(b.Key))
+                .Select(bar => $"{bar.Key}: {bar.Value.ToDashBar()} {bar.Value}");
+
+            await lines.WriteLinesTo(fileName);
+        }
+
+        public static string ToDashBar(this int v)
+            => Enumerable
+            .Range(0, v).Select(x => "-")
+            .Aggregate(((partialPhrase, word) => $"{partialPhrase} {word}"));
     }
 }
