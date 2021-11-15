@@ -9,6 +9,9 @@
   <ItemGroup>
     <None Remove="Newtonsoft.Json" />
     <None Remove="dist\" />
+    <None Remove="MD5\" />
+    <None Remove="SHA1\" />
+    <None Remove="Bigint\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="appsettings.json">
@@ -20,5 +23,10 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MD5\" />
+    <Folder Include="SHA1\" />
+    <Folder Include="Bigint\" />
   </ItemGroup>
 </Project>

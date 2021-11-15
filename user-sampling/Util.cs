@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -11,27 +10,26 @@ namespace user_sampling
 {
     public static class Util
     {
-        public static long GetSalt(int size = 100)
+        public static async Task<string> CreateSaltAsync(int size = 100)
         {
-            using var generator = RandomNumberGenerator.Create();
-            var salt = new byte[size];
-            generator.GetBytes(salt);
-            return Math.Abs(BitConverter.ToInt64(salt));
-        }
+            var salts = await Util.ReadFromAsync<List<string>>("salt.json");
 
-        public static long ToMD5(
-            this string input,
-            string salt = "donkiLovesCheeseC1ke")
-        {
-            using MD5 md5 = MD5.Create();
+            if (string.IsNullOrWhiteSpace(salts[0]))
+            {
+                using var generator = RandomNumberGenerator.Create();
 
-            byte[] inputBytes = Encoding.ASCII.GetBytes(salt + input);
+                generator.GetBytes(new byte[size]);
 
-            byte[] hashBytes = md5.ComputeHash(inputBytes);
+                var s = Math.Abs(BitConverter.ToInt64(new byte[size])).ToString();
 
-            var computedHash = BitConverter.ToInt64(hashBytes, 0);
+                _ = await new string[] { s }.WriteAsJsonToAsync("salt.json");
 
-            return Math.Abs(computedHash);
+                return s;
+            }
+            else
+            {
+                return salts[0];
+            }
         }
 
         public static async Task<T> ReadFromAsync<T>(string fileName)

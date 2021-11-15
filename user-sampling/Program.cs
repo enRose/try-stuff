@@ -11,28 +11,31 @@ namespace user_sampling
     class Program
     {
         public static IConfigurationRoot config;
+        public static List<Guid> guids;
         public static string salt;
 
         static async Task Main(string[] args)
         {
             BuildConfig();
 
-            salt = config["Salt"];
+            salt = config["salt"];
 
-            if (string.IsNullOrWhiteSpace(salt))
-            {
-                salt = Util.GetSalt().ToString();
+            guids = await Util.ReadFromAsync<List<Guid>>("guids.json");
 
-                Util.AddOrUpdateAppSetting("Salt", salt);
-            }
+            await RunMD5Async();
+        }
 
-            var guids = await Util.ReadFromAsync<List<Guid>>("guids.json");
+        static async Task RunMD5Async()
+        {
+            var canary = new Canary();
 
-            var bucket = Bucket(Mod_md5, guids);
+            canary.SetSplitFunc(MD_5.Split_md5).SetUserPercentage(10);
 
-            var t1 = bucket.WriteAsJsonToAsync("bucket-md5.json");
+            var bucket = canary.Split(guids).Bucket;
 
-            var t2 = bucket.DrawAsync("bar-md5.txt");
+            var t1 = bucket.WriteAsJsonToAsync("MD5/bucket.json");
+
+            var t2 = bucket.DrawAsync("MD5/dist.txt");
 
             await Task.WhenAll(t1, t2);
         }
@@ -44,43 +47,6 @@ namespace user_sampling
                 .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
                 .AddJsonFile("appsettings.json", false)
                 .Build();
-        }
-
-        static Dictionary<Guid, Tuple<string, string>> Bucket(
-            Func<Guid, (Guid, BigInteger, BigInteger)> modFunc,
-            List<Guid> guids)
-        {
-            var buckets = new Dictionary<Guid, Tuple<string, string>>();
-
-            guids.ForEach(g => {
-                var (k, n, m) = modFunc(g);
-
-                buckets.Add(k, new Tuple<string, string>(n.ToString(), m.ToString()));
-            });
-
-            return buckets;
-        }
-
-        static (Guid, BigInteger, BigInteger) Mod_bigint(Guid g)
-        {
-            var bytes = g.ToByteArray();
-
-            Array.Resize(ref bytes, 17);
-
-            var bigInt = new BigInteger(bytes);
-
-            BigInteger remainder = bigInt % 997;
-
-            return (g, bigInt, remainder);
-        }
-
-        static (Guid, BigInteger, BigInteger) Mod_md5(Guid g)
-        {
-            var hashedGuid = g.ToString().ToMD5(salt); 
-
-            BigInteger remainder = hashedGuid % 997;
-
-            return (g, hashedGuid, remainder);
         }
     }
 }
