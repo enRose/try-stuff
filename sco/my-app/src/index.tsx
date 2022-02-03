@@ -10,8 +10,10 @@ import { StoreProvider } from './store'
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Navigation />
-      <StoreProvider><App /></StoreProvider>
+      <StoreProvider>
+        <Navigation />
+        <App />
+      </StoreProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

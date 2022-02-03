@@ -19,8 +19,3 @@ export const StoreProvider: React.ComponentType = ({ children }) => {
 }
 
 export const useDispatch = () => useContext(DispatchCtx)
-
-export const useStore = <K extends keyof GlobalState>(property: K) => {
-    const state = useContext(StateCtx)
-    return state[property]
-}

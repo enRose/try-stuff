@@ -1,9 +1,10 @@
-import { Form, Input, Button, InputNumber, Row, Card, Typography } from 'antd'
-import { UserOutlined, LockOutlined } from '@ant-design/icons'
+import { Badge, Avatar, Form, Input, Button, InputNumber, Row, Card, Typography } from 'antd'
+import { UserOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { StateCtx } from '../../store'
 import { Gifs, logGif } from '../../shared/util/logger'
+import { CONGRATS } from '../../store/action'
 
 const { Title } = Typography
 
@@ -13,20 +14,31 @@ export const RegisterCard: React.FC = () => {
 
 	const navigate = useNavigate()
 
-	const { congrats, sayMyName } = useContext(StateCtx)
-
+	const { congrats, sayMyName, dispatch } = useContext(StateCtx)
 
 	const onFinish = (values: any) => {
 		logGif(values, 'RegisterCard', Gifs.LongHairCow)
 
-		setLamports(lamports+1)
+		setLamports(lamports + 1)
+
+		dispatch({ type: CONGRATS, congrats: 'Yay! You are one lamport richer!' })
 	}
 
 	return (
 		<Row justify='center' align='middle'>
 			<Card title="" bordered={false} style={{ width: 500 }}>
 
-				<Title level={2}>Welcome {sayMyName}</Title>
+				<Title level={2}>
+					<Avatar icon={<UserOutlined />} />
+
+					Welcome {sayMyName}
+
+					<Badge
+						className="site-badge-count-109"
+						count={`lamport: ${lamports}`}
+						style={{ backgroundColor: '#52c41a' }}
+					/>
+				</Title>
 
 				<Form
 					layout="vertical"
@@ -45,10 +57,10 @@ export const RegisterCard: React.FC = () => {
 
 					<Form.Item name='cvc' label="cvc"
 						rules={[{
-							required: true, type: 'number', min: 0, max: 999,
+							required: true, min: 0, max: 999,
 							message: 'Please input your cvc!'
 						}]}>
-						<InputNumber placeholder="cvc" />
+						<Input type='number' placeholder="cvc" />
 					</Form.Item>
 
 					<Form.Item name='expiry' label="expiry"
