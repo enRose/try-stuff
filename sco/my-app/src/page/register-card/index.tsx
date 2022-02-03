@@ -17,7 +17,7 @@ export const RegisterCard: React.FC = () => {
 
 
 	const onFinish = (values: any) => {
-		logGif(values, 'RegisterCard', Gifs.LaserEyeCat)
+		logGif(values, 'RegisterCard', Gifs.LongHairCow)
 
 		setLamports(lamports+1)
 	}
@@ -38,12 +38,12 @@ export const RegisterCard: React.FC = () => {
 					<Form.Item
 						label="Credit card number"
 						name="ccNumber"
-						rules={[{ required: true, type: 'number', message: 'Please input your credit card number!' }]}
+						rules={[{ required: true, message: 'Please input your credit card number!' }]}
 					>
-						<Input placeholder="Credit card number" />
+						<Input type='number' placeholder="Credit card number" />
 					</Form.Item>
 
-					<Form.Item name={['user', 'cvc']} label="cvc"
+					<Form.Item name='cvc' label="cvc"
 						rules={[{
 							required: true, type: 'number', min: 0, max: 999,
 							message: 'Please input your cvc!'
@@ -51,7 +51,7 @@ export const RegisterCard: React.FC = () => {
 						<InputNumber placeholder="cvc" />
 					</Form.Item>
 
-					<Form.Item name={['user', 'expiry']} label="expiry"
+					<Form.Item name='expiry' label="expiry"
 						rules={[{
 							required: true, type: 'number', min: 0, max: 99,
 							message: 'Please input your expiry!'
