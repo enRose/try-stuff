@@ -15,9 +15,9 @@ export const RegisterCard: React.FC = () => {
 	const [lamports, setLamports] = useState(0)
 	
 	const navigate = useNavigate()
-	const { congrats, sayMyName, dispatch } = useContext(StateCtx)
+	const { sayMyName, dispatch } = useContext(StateCtx)
 
-	const [celebrateTime, setInitialTime] = useState(0)
+	const [celebrateTime, setCelebrateDuration] = useState(0)
   const [celebrate, setCelebrate] = useState(false)
 
 	const onFinish = (values: any) => {
@@ -29,22 +29,24 @@ export const RegisterCard: React.FC = () => {
 
 		setCelebrate(true)
 
-		setInitialTime(5)
+		setCelebrateDuration(5)
 	}
 
-	useEffect(() => {
-    if (celebrateTime > 0) {
-      setTimeout(() => {
-        console.log("startTime, ", celebrateTime);
-        setInitialTime(celebrateTime - 1);
-      }, 1000);
-    }
+	useTimer(celebrate, celebrateTime, setCelebrateDuration, setCelebrate)
 
-    if (celebrateTime === 0 && celebrate) {
-      console.log("done");
-      setCelebrate(false);
-    }
-  }, [celebrateTime, celebrate]);
+	// This is ported to useTimer hook
+	//
+	// useEffect(() => {
+  //   if (celebrateTime > 0) {
+  //     setTimeout(() => {
+  //       setInitialTime(celebrateTime - 1)
+  //     }, 1000)
+  //   }
+
+  //   if (celebrateTime === 0 && celebrate) {
+  //     setCelebrate(false)
+  //   }
+  // }, [celebrateTime, celebrate])
 
 	return (
 		<Row justify='center' align='middle'>

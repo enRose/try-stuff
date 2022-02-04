@@ -1,32 +1,17 @@
-import { useCallback, useEffect, useRef } from "react"
+import { useEffect } from "react"
 
-const useTimer = (callback:any, delay:any) => {
-  const callbackRef = useRef(callback)
-  const timeoutRef = useRef<any>()
-
+const useTimer = (trigger: any, duration:any, setDuration: any, setTrigger: any) => {
   useEffect(() => {
-    callbackRef.current = callback
-  }, [callback])
+    if (duration > 0) {
+      setTimeout(() => {
+        setDuration(duration - 1)
+      }, 1000)
+    }
 
-  const set = useCallback(() => {
-    timeoutRef.current = setTimeout(() => callbackRef.current(), delay)
-  }, [delay])
-
-  const clear = useCallback(() => {
-    timeoutRef.current && clearTimeout(timeoutRef.current)
-  }, [])
-
-  useEffect(() => {
-    set()
-    return clear
-  }, [delay, set, clear])
-
-  const reset = useCallback(() => {
-    clear()
-    set()
-  }, [clear, set])
-
-  return { reset, clear }
+    if (duration === 0 && trigger) {
+      setTrigger(false)
+    }
+  }, [duration, trigger])
 }
 
 export default useTimer
