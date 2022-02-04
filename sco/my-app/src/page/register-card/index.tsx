@@ -5,16 +5,20 @@ import { useContext, useEffect, useState } from 'react'
 import { StateCtx } from '../../store'
 import { Gifs, logGif } from '../../shared/util/logger'
 import { CONGRATS } from '../../store/action'
+import Confetti from 'react-confetti';
+import useTimer from '../../hook/useTimer'
 
 const { Title } = Typography
 
 
 export const RegisterCard: React.FC = () => {
 	const [lamports, setLamports] = useState(0)
-
+	
 	const navigate = useNavigate()
-
 	const { congrats, sayMyName, dispatch } = useContext(StateCtx)
+
+	const [initialTime, setInitialTime] = useState(0)
+  const [celebrate, setCelebrate] = useState(false)
 
 	const onFinish = (values: any) => {
 		logGif(values, 'RegisterCard', Gifs.LongHairCow)
@@ -22,10 +26,30 @@ export const RegisterCard: React.FC = () => {
 		setLamports(lamports + 1)
 
 		dispatch({ type: CONGRATS, congrats: 'Yay! You are one lamport richer!' })
+
+		setCelebrate(true)
+
+		setInitialTime(5)
 	}
+
+	useEffect(() => {
+    if (initialTime > 0) {
+      setTimeout(() => {
+        console.log("startTime, ", initialTime);
+        setInitialTime(initialTime - 1);
+      }, 1000);
+    }
+
+    if (initialTime === 0 && celebrate) {
+      console.log("done");
+      setCelebrate(false);
+    }
+  }, [initialTime, celebrate]);
 
 	return (
 		<Row justify='center' align='middle'>
+			{initialTime > 0 && <Confetti numberOfPieces={500} tweenDuration={1000} gravity={0.05} />}
+
 			<Card title="" bordered={false} style={{ width: 500 }}>
 
 				<Title level={2}>
