@@ -17,7 +17,7 @@ export const RegisterCard: React.FC = () => {
 	const navigate = useNavigate()
 	const { congrats, sayMyName, dispatch } = useContext(StateCtx)
 
-	const [initialTime, setInitialTime] = useState(0)
+	const [celebrateTime, setInitialTime] = useState(0)
   const [celebrate, setCelebrate] = useState(false)
 
 	const onFinish = (values: any) => {
@@ -33,22 +33,22 @@ export const RegisterCard: React.FC = () => {
 	}
 
 	useEffect(() => {
-    if (initialTime > 0) {
+    if (celebrateTime > 0) {
       setTimeout(() => {
-        console.log("startTime, ", initialTime);
-        setInitialTime(initialTime - 1);
+        console.log("startTime, ", celebrateTime);
+        setInitialTime(celebrateTime - 1);
       }, 1000);
     }
 
-    if (initialTime === 0 && celebrate) {
+    if (celebrateTime === 0 && celebrate) {
       console.log("done");
       setCelebrate(false);
     }
-  }, [initialTime, celebrate]);
+  }, [celebrateTime, celebrate]);
 
 	return (
 		<Row justify='center' align='middle'>
-			{initialTime > 0 && <Confetti numberOfPieces={500} tweenDuration={1000} gravity={0.05} />}
+			{celebrateTime > 0 && <Confetti numberOfPieces={500} tweenDuration={1000} gravity={0.05} />}
 
 			<Card title="" bordered={false} style={{ width: 500 }}>
 
