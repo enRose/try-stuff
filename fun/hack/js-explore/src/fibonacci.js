@@ -16,7 +16,7 @@ const Fibonacci = () => {
 
   return (
     <div>
-      {goCrazy ? <Confettila /> : <></>}
+      {goCrazy ? <Confettila start={true}/> : <></>}
 
       <p>Given a number, we print a Fibonacci sequence of that number </p>
 
