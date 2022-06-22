@@ -2,7 +2,8 @@ import React, { Suspense, useState, lazy } from 'react'
 import './App.css';
 
 const puzzles = {
-  'pop-list': lazy(() => import('./popList'))
+  'pop-list': { name: 'Pop List', puzzle: lazy(() => import('./popList')) },
+  'fibonacci': { name: 'Fibonacci', puzzle: lazy(() => import('./fibonacci')) },
 }
 
 const App = () => {
@@ -12,15 +13,20 @@ const App = () => {
     setPuzzleToRender(puzzles[event.currentTarget.id])
   }
 
-  const Puzzle = puzzleToRender
+  const Puzzle = puzzleToRender?.puzzle
 
   return (
     <div className="App">
       {puzzleToRender ?
         <Suspense fallback={<div>Loading...</div>}>
+          <button onClick={() => setPuzzleToRender('')}>Go back</button>
           <Puzzle />
         </Suspense> :
-        <button id={`pop-list`} onClick={e => goTo(e)}>Pop list</button>
+        Object.keys(puzzles).map(key =>
+          <div>
+            <button id={key} onClick={e => goTo(e)}>{puzzles[key].name}</button>
+          </div>
+        )
       }
     </div>
   )
