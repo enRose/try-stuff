@@ -1,6 +1,5 @@
 import React, { lazy, useState } from 'react'
 
-
 const gen = (len) => {
   console.log('fibonacci')
 
@@ -24,7 +23,7 @@ const Fibonacci = () => {
       <input onChange={e => setLen(e.currentTarget.value)} type="number" id="fibonacciLength" name="fibonacciLength" />
       <button onClick={() => {
         const result = gen(len)
-        setGoCrazy(isFibonacci(result) ? lazy(() => import('./component/Confetti')) : null)
+        setGoCrazy(isFibonacci(result) ? lazy(() => import('../../component/Confetti')) : null)
       }}>Print</button>
     </div>
   )

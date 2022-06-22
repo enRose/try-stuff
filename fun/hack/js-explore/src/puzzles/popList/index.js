@@ -1,7 +1,8 @@
 const PopList = () => {
+
   return (
     <div>
-      <ul id="list">
+      <ul id={`pop-list-${Math.random()}`}>
         <li>1</li>
         <li>2</li>
         <li>3</li>

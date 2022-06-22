@@ -1,30 +1,25 @@
-import React, { Suspense, useState, lazy } from 'react'
+import React, { Suspense } from 'react'
 import './App.css';
+import { usePuzzle, puzzles } from './hook/usePuzzle';
 
-const puzzles = {
-  'pop-list': { name: 'Pop List', puzzle: lazy(() => import('./popList')) },
-  'fibonacci': { name: 'Fibonacci', puzzle: lazy(() => import('./fibonacci')) },
-}
 
 const App = () => {
-  const [puzzleToRender, setPuzzleToRender] = useState()
-
-  const goTo = (event) => {
-    setPuzzleToRender(puzzles[event.currentTarget.id])
-  }
-
-  const Puzzle = puzzleToRender?.puzzle
+  const { goTo, remove, puzzle } = usePuzzle()
+ 
+  const Puzzle = puzzle?.puzzle
 
   return (
-    <div className="App">
-      {puzzleToRender ?
+    <div key='app' className="App">
+      {puzzle ?
         <Suspense fallback={<div>Loading...</div>}>
-          <button onClick={() => setPuzzleToRender('')}>Go back</button>
+          <button key='remove-button' onClick={remove}>Go back</button>
           <Puzzle />
         </Suspense> :
         Object.keys(puzzles).map(key =>
           <div>
-            <button id={key} onClick={e => goTo(e)}>{puzzles[key].name}</button>
+            <button id={key}
+              onClick={e => goTo(e.currentTarget.id)}>{puzzles[key].name}
+            </button>
           </div>
         )
       }
