@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './popList.css'
 
-export const PopListHint = () => {
+const PopListHint = () => {
   const bulbs = Array(6).fill(0).map((_, i) => {
     const randomColor = Math.floor(Math.random() * 16777215).toString(16)
 
@@ -22,3 +22,5 @@ export const PopListHint = () => {
     </>
   )
 }
+
+export default PopListHint

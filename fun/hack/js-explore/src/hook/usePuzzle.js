@@ -1,7 +1,11 @@
 import React, { lazy, useState } from 'react'
 
 export const puzzles = {
-  'pop-list': { name: 'Pop List', puzzle: lazy(() => import('../puzzles/popList')) },
+  'pop-list': { 
+    name: 'Pop List', 
+    puzzle: lazy(() => import('../puzzles/popList')),
+    hint: lazy(() => import('../puzzles/popList/hint'))
+   },
   'fibonacci': { name: 'Fibonacci', puzzle: lazy(() => import('../puzzles/fibonacci')) },
 }
 

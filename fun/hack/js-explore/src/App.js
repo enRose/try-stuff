@@ -1,19 +1,22 @@
-import React, { Suspense } from 'react'
+import React, { useState, Suspense } from 'react'
 import './App.css';
 import { usePuzzle, puzzles } from './hook/usePuzzle'
 
 
 const App = () => {
   const { goTo, remove, puzzle } = usePuzzle()
- 
+  const [hint, setHint] = useState(false)
+
   const Puzzle = puzzle?.puzzle
+  const Hint = puzzle?.hint
 
   return (
     <div key='app' className="App">
       {puzzle ?
         <Suspense fallback={<div>Loading...</div>}>
           <button key='remove-button' onClick={remove}>Go back</button>
-          <Puzzle />
+          <button key='hint-button' onClick={() => setHint(!hint)}>{hint ? 'Reset' : 'Show hint'}</button>
+          {hint ? <Hint /> : <Puzzle />}
         </Suspense> :
         Object.keys(puzzles).map(key =>
           <div>
