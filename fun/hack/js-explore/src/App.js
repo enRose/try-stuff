@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import './App.css';
-import { usePuzzle, puzzles } from './hook/usePuzzle';
+import { usePuzzle, puzzles } from './hook/usePuzzle'
 
 
 const App = () => {
