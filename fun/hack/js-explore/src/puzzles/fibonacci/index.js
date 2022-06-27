@@ -1,6 +1,6 @@
 import React, { lazy, useState } from 'react'
 
-const gen = (len) => {
+export const genFibonacci = (len) => {
   console.log('fibonacci')
 
   const fibonacciArray = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144]
@@ -10,26 +10,31 @@ const gen = (len) => {
 
 const Fibonacci = () => {
   const [len, setLen] = useState()
-  const [goCrazy, setGoCrazy] = useState()
-  const Confettila = goCrazy
+  const [confetti, setConfetti] = useState()
+  const [fibonacciSequence, setFibonacciSequence] = useState()
+  const Confettila = confetti
 
   return (
     <div>
-      {goCrazy ? <Confettila start={true}/> : <></>}
+      {confetti ? <Confettila start={true}/> : <></>}
 
       <p>Given a number, we print a Fibonacci sequence of that number </p>
 
       <label for="fibonacciLength">Length:</label>
       <input onChange={e => setLen(e.currentTarget.value)} type="number" id="fibonacciLength" name="fibonacciLength" />
       <button onClick={() => {
-        const result = gen(len)
-        setGoCrazy(isFibonacci(result) ? lazy(() => import('../../component/Confetti')) : null)
+        const result = genFibonacci(len)
+        
+        setFibonacciSequence(result)
+
+        setConfetti(isFibonacci(result) ? lazy(() => import('../../component/Confetti')) : null)
       }}>Print</button>
+      <p>{fibonacciSequence?.join(',')}</p>
     </div>
   )
 }
 
-const isFibonacci = (fibonacciArray) => {
+export const isFibonacci = (fibonacciArray) => {
   if (fibonacciArray.length <= 2) {
     return false
   }
@@ -38,13 +43,5 @@ const isFibonacci = (fibonacciArray) => {
     index >= fibonacciArray.length - 2 || f + fibonacciArray[index + 1] === fibonacciArray[index + 2]
   )
 }
-
-// test('renders learn react link', () => {
-//   const f = gen(10)
-
-//   const result = isFibonacci(f)
-
-//   expect(result).toBeTruthy()
-// })
 
 export default Fibonacci
