@@ -3,7 +3,7 @@ import { useTime } from '../hook/useTime'
 import { logGif, Gifs } from '../util/logger'
 import '../util/memeLogger.js'
 
-export const BrowserHack = () => {
+export const JsHack = () => {
   const clock = useTime()
 
   const aussieTime = clock.toLocaleTimeString('en-AU', { timeStyle: 'medium', timeZone: 'Australia/Sydney'})
@@ -12,15 +12,10 @@ export const BrowserHack = () => {
 
   logGif(aussieTime, 'Aussie time', Gifs.LightningCat)
 
-  console.meme(aussieTime, "Aussie time.", "Actual Advice Mallard", 400, 300)
+  //console.meme(aussieTime, "Aussie time.", "http://i.imgur.com/vu4zTYT.jpg", 400, 300)
 
   return (
     <>
-      <p>You are in browser coding session!</p>
-
-      <p>Aussie: {aussieTime}</p>
-
-      <p>NZ: {dateNTime}</p>
     </>
   )
 }
