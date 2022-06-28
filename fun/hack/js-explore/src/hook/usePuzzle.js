@@ -1,6 +1,10 @@
 import React, { lazy, useState } from 'react'
 
 export const puzzles = {
+  'fading': {
+    name: 'fading',
+    puzzle: lazy(() => import('../puzzles/fading')),
+  },
   'pop-list': { 
     name: 'Pop List', 
     puzzle: lazy(() => import('../puzzles/popList')),

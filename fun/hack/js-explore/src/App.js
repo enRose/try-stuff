@@ -3,9 +3,8 @@ import { usePuzzle, puzzles } from './hook/usePuzzle'
 import { BrowserHack } from './interview/browserHack'
 import './App.css'
 
-const interviewMode = false
-
 const App = () => {
+  const [interviewMode, setInterviewMode] = useState(false)
   const { goTo, remove, puzzle } = usePuzzle()
   const [hint, setHint] = useState(false)
 
@@ -15,19 +14,26 @@ const App = () => {
   return (
     interviewMode ?
       <div key='app-interview' className="App">
+        <button key='fun-button' onClick={() => setInterviewMode(false)}>Back to fun mode</button>
         <BrowserHack />
       </div> :
 
       <div key='app-puzzle' className="App">
+        <div>
+          <button key='interview-button' onClick={() => setInterviewMode(true)}>Interview mode</button>
+        </div>
+
         {puzzle ?
           <Suspense fallback={<div>Loading...</div>}>
-            <button key='remove-button' onClick={remove}>Go back</button>
+            <div>
+              <button key='remove-button' onClick={remove}>Go back</button>
+            </div>
             <button key='hint-button' onClick={() => setHint(!hint)}>{hint ? 'Reset' : 'Show hint'}</button>
             {hint ? <Hint /> : <Puzzle />}
           </Suspense> :
           Object.keys(puzzles).map(key =>
             <div key={`div-${key}`}>
-              <button key={key}
+              <button id={key} key={key}
                 onClick={e => goTo(e.currentTarget.id)}>{puzzles[key].name}
               </button>
             </div>
