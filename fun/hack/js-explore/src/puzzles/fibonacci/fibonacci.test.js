@@ -1,7 +1,7 @@
 import { genFibonacci, isFibonacci } from './index'
 
 
-test('renders learn react link', () => {
+test('Fib test', () => {
   const f = genFibonacci(10)
 
   const result = isFibonacci(f)

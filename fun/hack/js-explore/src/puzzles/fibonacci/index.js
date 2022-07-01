@@ -3,6 +3,8 @@ import React, { lazy, useState } from 'react'
 export const genFibonacci = (len) => {
   console.log('fibonacci')
 
+  // write your answer here:
+
   const fibonacciArray = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144]
 
   return fibonacciArray
