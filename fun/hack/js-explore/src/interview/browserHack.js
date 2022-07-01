@@ -1,26 +1,46 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTime } from '../hook/useTime'
 import { logGif, Gifs } from '../util/logger'
 import '../util/memeLogger.js'
+import { fetchData } from './data'
+
+
+export const DisplayChildren = (props) => {
+  const { children } = props
+
+  if (!children || children.length === 0) {
+    return
+  }
+
+  return (<ul>
+    {children?.map(child => (
+      <li>
+        {child.name}
+        <DisplayChildren children={child.children} />
+    </li>
+    ))}
+  </ul>)
+}
 
 export const BrowserHack = () => {
-  const clock = useTime()
+  const [data, setData] = useState([])
 
-  const aussieTime = clock.toLocaleTimeString('en-AU', { timeStyle: 'medium', timeZone: 'Australia/Sydney'})
-
-  const dateNTime = clock.toLocaleString()
-
-  logGif(aussieTime, 'Aussie time', Gifs.LightningCat)
-
-  console.meme(aussieTime, "Aussie time.", "Actual Advice Mallard", 400, 300)
+  useEffect(() => {
+    fetchData().then((d) => setData(d))
+  }, [])
 
   return (
     <>
-      <p>You are in browser coding session!</p>
-
-      <p>Aussie: {aussieTime}</p>
-
-      <p>NZ: {dateNTime}</p>
+      {data.map(eventItem => <div
+        id={eventItem.id}
+        key={eventItem.id}>
+        <div>
+          {eventItem.name}
+          <DisplayChildren children={eventItem.children} />
+        </div>
+      </div>
+      )
+      }
     </>
   )
 }
