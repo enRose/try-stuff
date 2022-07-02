@@ -1,6 +1,6 @@
 import React, { useState, Suspense } from 'react'
 import { usePuzzle, puzzles } from './hook/usePuzzle'
-import { Browser } from './interview/browser'
+import { InfinityRender } from './interview/infinityRender'
 import './App.css'
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
     interviewMode ?
       <div key='app-interview' className="App">
         <button className='mode-switch' key='fun-button' onClick={() => setInterviewMode(false)}>Back to fun mode</button>
-        <Browser />
+        <InfinityRender />
       </div> :
 
       <div key='app-puzzle' className="App">

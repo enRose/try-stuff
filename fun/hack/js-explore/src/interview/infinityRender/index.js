@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { fetchData } from './data'
-import './browser.css'
+import './infinity.css'
 
 export const DisplayChildren = (props) => {
   const { children } = props
@@ -45,7 +45,7 @@ export const DisplayChildren = (props) => {
     </div>)
 }
 
-export const Browser = () => {
+export const InfinityRender = () => {
   const [data, setData] = useState([])
 
   useEffect(() => {
