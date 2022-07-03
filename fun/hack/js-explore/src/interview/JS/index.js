@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { useTime } from '../hook/useTime'
-import { logGif, Gifs } from '../util/logger'
-import '../util/memeLogger.js'
+import { useTime } from '../../hook/useTime'
+import { logGif, Gifs } from '../../util/logger'
+import '../../util/memeLogger.js'
 
 export const JsHack = () => {
   const clock = useTime()

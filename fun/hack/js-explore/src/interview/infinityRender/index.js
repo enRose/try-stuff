@@ -26,7 +26,7 @@ export const DisplayChildren = (props) => {
   const WhichArrow = (props) =>
     shouldExpand(props.clickCount) ? downArrow : rightArrow
 
-  const shouldExpand = (clickCount) => 
+  const shouldExpand = (clickCount) =>
     !clickCount || clickCount % 2 === 0 ? false : true
 
   return (
@@ -37,8 +37,8 @@ export const DisplayChildren = (props) => {
           onClick={handleClick}>
 
           <WhichArrow clickCount={clickCount[`${child.id}-${child.name}`]} />
-           {child.name}
-           {shouldExpand(clickCount[`${child.id}-${child.name}`]) ? 
+          <span className='name-space'>{child.name}</span>
+          {shouldExpand(clickCount[`${child.id}-${child.name}`]) ?
             <DisplayChildren children={child.children} /> : null}
         </div>
       ))}
@@ -60,7 +60,7 @@ export const InfinityRender = () => {
           id={eventItem.id}
           key={eventItem.id}>
           <div>
-            <span>•{eventItem.name}</span>
+            • <span className='name-space'>{eventItem.name}</span>
             <DisplayChildren children={eventItem.children} />
           </div>
         </div>
