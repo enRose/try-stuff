@@ -1,11 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { fetchData } from './data'
-import ReadMe from './readme.md'
-import './infinity.css'
-import {Markdown} from '../../component/Markdown'
-import officeMap from './office-map.png'
-import answer from './one-possible-answer.md'
+## Answer
 
+```
 export const DisplayChildrenRecursively = (props) => {
   const { children } = props
   const [clickCount, setClickCount] = useState({})
@@ -59,15 +54,7 @@ export const InfinityRender = () => {
 
   return (
     <div className='container'>
-      <div>
-        <img src={officeMap}></img>
-        <Markdown file={ReadMe} />
-        <button style={{marginBottom: '1em'}} onClick={()=>setShowAnswer(true)}>Show show answer</button>
-      </div>
-
-      {showAnswer ? <Markdown file={answer} /> : null}
-
-      {showAnswer ? data.map(eventItem =>
+      {data.map(eventItem =>
         <div
           className='top-level-space'
           id={eventItem.id}
@@ -81,3 +68,4 @@ export const InfinityRender = () => {
     </div>
   )
 }
+```

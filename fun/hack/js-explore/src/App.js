@@ -1,6 +1,7 @@
 import React, { useState, Suspense } from 'react'
 import { usePuzzle, puzzles } from './hook/usePuzzle'
 import { InfinityRender } from './interview/infinityRender'
+import {SummaryPage} from './interview/JS'
 import './App.css'
 
 const App = () => {

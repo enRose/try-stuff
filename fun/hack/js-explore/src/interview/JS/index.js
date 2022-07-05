@@ -1,21 +1,29 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTime } from '../../hook/useTime'
 import { logGif, Gifs } from '../../util/logger'
 import '../../util/memeLogger.js'
+import { getFeatureState } from './featureFlag'
 
-export const JsHack = () => {
-  const clock = useTime()
+export const SummaryPage = () => {
+  const [flag, setFlag] = useState()
 
-  const aussieTime = clock.toLocaleTimeString('en-AU', { timeStyle: 'medium', timeZone: 'Australia/Sydney'})
+  useEffect(() => {
+    getFeatureState("extended-summ")
+      .then(function (isEnabled) {
+        setFlag(isEnabled)
 
-  const dateNTime = clock.toLocaleString()
-
-  logGif(aussieTime, 'Aussie time', Gifs.LightningCat)
-
-  //console.meme(aussieTime, "Aussie time.", "http://i.imgur.com/vu4zTYT.jpg", 400, 300)
+        console.log(isEnabled)
+        if (isEnabled) {
+          //showExtendedSummary();
+        } else {
+          //showBriefSummary()
+        }
+      })
+  }, [])
 
   return (
     <>
+      <div>{flag ? 'enabled': 'disabled'}</div>
     </>
   )
 }
